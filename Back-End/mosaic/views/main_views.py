@@ -13,7 +13,7 @@ def sign_up():
 def question():
     return render_template('/user_templates/question.html')
 
-@bp.route('/save')
+@bp.route('/save_video')
 def save_video():
     return render_template('/user_templates/save_video.html')
 

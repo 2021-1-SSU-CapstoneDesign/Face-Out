@@ -1,6 +1,7 @@
 # Face Out - Web PART
 <br>
 
+- 2021.5 - 2021.9
 - **'동영상에서 지정된 사람을 제외한 나머지 사람들을 모자이크 처리해주는 웹 사이트'** 프로젝트 중 **웹 부분** 구현.
 - [점프 투 플라스크](https://wikidocs.net/81085)를 참고하여 프로젝트를 진행함.
 
@@ -17,8 +18,9 @@
 - [1. Flask 개발 환경 설정](#1-flask-개발-환경-설정)
 - [2. Flask 실행 방법](#2-flask-실행-방법)
 - [3. Front-End](#3-front-end)
-  - [03-1. User Templates](#02-1-user-templates)
-  - [03-2. Manager Templates](#02-2-manager-templates)
+  - [03-1. User Templates](#03-1-user-templates)
+  - [03-2. Manager Templates](#03-2-manager-templates)
+- [4. 프로젝트 구조](#4-프로젝트-구조)
 
 <br>
 
@@ -91,13 +93,6 @@ FLASK_ENV=development
 - **templates** : html 파일 <br>
 - **views** : 화면 구성 <br>
   - **main_views.py** : 유지보수를 좋게 하기 위해 render_templates() 함수를 이용하여 html 렌더링함. <br><br> <img src="https://user-images.githubusercontent.com/53934639/124151464-8a65a480-dacd-11eb-94fe-fea6372ab6e6.png" width = "500px">
-
-
-
-
-
-
-
 
 
 

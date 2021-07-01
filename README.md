@@ -18,8 +18,8 @@
 - [1. Flask 개발 환경 설정](#1-flask-개발-환경-설정)
 - [2. Flask 실행 방법](#2-flask-실행-방법)
 - [3. Front-End](#3-front-end)
-  - [03-1. User Templates](#03-1-user-templates)
-  - [03-2. Manager Templates](#03-2-manager-templates)
+  - [03-1. User Templates](#3-1-user-templates)
+  - [03-2. Manager Templates](#3-2-manager-templates)
 - [4. 프로젝트 구조](#4-프로젝트-구조)
 
 <br>
@@ -70,7 +70,7 @@ FLASK_ENV=development
 - 웹에 나타나는 페이지들.
 - 크게 사용자 템플릿과 관리자 템플릿으로 나뉨.
 
-### 03-1. User Templates
+### 3-1. User Templates
 - [main.html](./Back-End/mosaic/templates/user_templates/main.html) : 메인 페이지
 - [mosaic_process.html](./Back-End/mosaic/templates/user_templates/mosaic_process.html) : 모자이크 처리 페이지
 - [save_video.html](./Back-End/mosaic/templates/user_templates/save_video.html) : 모자이크 처리된 동영상 저장 또는 다운로드 하는 페이지
@@ -81,13 +81,13 @@ FLASK_ENV=development
 - [q_write.html](./Back-End/mosaic/templates/user_templates/q_write.html) : Question 작성하는 페이지
 - [question.html](./Back-End/mosaic/templates/user_templates/question.html) : 작성된 Question 보여주는 페이지
 
-### 03-2. Manager Templates
+### 3-2. Manager Templates
 
 
 
 <br><br>
 
-## 04. 프로젝트 구조
+## 4. 프로젝트 구조
 
 - **static** : css, js 파일 <br><img src="https://user-images.githubusercontent.com/53934639/124150658-b6345a80-dacc-11eb-9ce4-f4c0fe5eb78a.png" align="right"> 
 - **templates** : html 파일 <br>

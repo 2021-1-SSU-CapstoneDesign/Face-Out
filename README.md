@@ -89,10 +89,10 @@ FLASK_ENV=development
 
 ## 4. 프로젝트 구조
 
-- **static** : css, js 파일 <br><img src="https://user-images.githubusercontent.com/53934639/124150658-b6345a80-dacc-11eb-9ce4-f4c0fe5eb78a.png" align="right"> 
+- **static** : css, js 파일 <br><img src="https://user-images.githubusercontent.com/53934639/124150658-b6345a80-dacc-11eb-9ce4-f4c0fe5eb78a.png" width = "250px" align="right"> 
 - **templates** : html 파일 <br>
 - **views** : 화면 구성 <br>
-  - **main_views.py** : 유지보수를 좋게 하기 위해 render_templates() 함수를 이용하여 html 렌더링함. <img src="https://user-images.githubusercontent.com/53934639/124151464-8a65a480-dacd-11eb-94fe-fea6372ab6e6.png" width = "500px" align="left">
+  - **main_views.py** : 유지보수를 좋게 하기 위해 render_templates() 함수를 이용하여 html 렌더링함.<br><br> <img src="https://user-images.githubusercontent.com/53934639/124151464-8a65a480-dacd-11eb-94fe-fea6372ab6e6.png" width = "350px" align="left">
 
 
 

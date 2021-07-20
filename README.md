@@ -29,9 +29,9 @@
 <br>
 
 ## 1. Flask 개발 환경 설정
-1) python과 pycharm 설치
+### 1) python과 pycharm 설치
 
-2) Flask 개발 환경 만들기
+### 2) Flask 개발 환경 만들기
 
 순서|코드
 --|--
@@ -44,7 +44,10 @@ pip 최신 버전 설치 | ```(mosaic_web_project) C:\venvs\mosaic_web_project\S
 플라스크 프로젝트를 담을 디렉터리 생성 후 이동 |  ```C:\venvs\mosaic_web_project\Scripts> activate ``` <br>  ```(mosaic_web_project) C:\mosaic_web> mkdir mosaic_web_project ```
 배치 파일 생성 | [링크](https://wikidocs.net/81042) 참고하여 배치 파일 생성 후 실행하여 가상 환경 진입까지 진행.<br> projects -> mosaic_web, myproject -> mosaic_web_project 로 바꾸어 진행.
 
-3) mosaic_web_project 디렉터리에 ./Back-End/mosaic 폴더를 삽입.
+### 3) 파이참과 파이참 인터프리터 설정.
+[링크](https://wikidocs.net/81043) 참고하여 실행.
+
+### 4) mosaic_web_project 디렉터리에 ./Back-End/mosaic 폴더를 삽입.
 
 <br><br>
 

@@ -41,6 +41,7 @@
 가상 환경에서 플라스크 설치 | ```(mosaic_web_project) C:\venvs\mosaic_web_project\Scripts> pip install Flask```
 pip 최신 버전 설치 | ```(mosaic_web_project) C:\venvs\mosaic_web_project\Scripts> python -m pip install --upgrade pip```
 프로젝트 루트 디렉터리 생성 | ```C:\> mkdir mosaic_web```<br>```C:\> cd mosaic_web```
+프로젝트 루트 디렉터리 안에서 가상 환경에 진입하기|```C:\mosaic_web> C:\venvs\mosaic_web_project\Scripts\activate``` <br> ```(mosaic_web_project) C:\mosaic_web>```
 플라스크 프로젝트를 담을 디렉터리 생성 후 이동 |  ```C:\venvs\mosaic_web_project\Scripts> activate ``` <br>  ```(mosaic_web_project) C:\mosaic_web> mkdir mosaic_web_project ```
 배치 파일 생성 | [링크](https://wikidocs.net/81042) 참고하여 배치 파일 생성 후 실행하여 가상 환경 진입까지 진행.<br> projects -> mosaic_web, myproject -> mosaic_web_project 로 바꾸어 진행.
 

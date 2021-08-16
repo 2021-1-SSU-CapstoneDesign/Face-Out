@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template
-
+from flask import Blueprint, render_template, request
+from werkzeug.utils import secure_filename
 bp = Blueprint('main', __name__, url_prefix='/')
 
 
@@ -13,9 +13,9 @@ def sign_up():
 def question():
     return render_template('/user_templates/question.html')
 
-@bp.route('/save_video')
-def save_video():
-    return render_template('/user_templates/save_video.html')
+#@bp.route('/save_video')
+#def save_video():
+#    return render_template('/user_templates/save_video.html')
 
 @bp.route('/q_write')
 def q_write():
@@ -37,6 +37,16 @@ def login():
 def question_notice():
     return render_template('/user_templates/q&a.html')
 
+# 파일 업로드
 @bp.route('/')
 def index():
     return render_template('/user_templates/main.html')
+
+# 파일 업로드 처리
+@bp.route('/save_video', methods = ['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        # 저장할 경로 + 파일명
+        f.save(secure_filename(f.filename))
+        return render_template('/user_templates/save_video.html')

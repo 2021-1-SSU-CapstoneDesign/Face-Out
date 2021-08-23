@@ -56,21 +56,21 @@
                     <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work.-->
                     <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address!-->
                     <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally!-->
-                    <form id="contactForm"  novalidate >
-                        <div class="form-group floating-label-form-group controls" >
-                            <input class="form-control" id="name" placeholder="Name" required data-validation-required-message="Please enter Your Name." style="font-size:25px; height:80px;"/>
+                    <form method="post" id="contactForm"  novalidate >
+                        <div class="form-group floating-label-form-group controls">
+                            <input class="form-control" name="u_name" placeholder="Name" required data-validation-required-message="Please enter Your Name." style="font-size:25px; height:80px;"/>
                         </div>
                         <div class="form-group floating-label-form-group controls" >
-                            <input class="form-control" id="phone" placeholder="Phone Number" required data-validation-required-message="Please enter Your Phone Number." style="font-size:25px; height:80px;"/>
+                            <input class="form-control" name="u_phone" placeholder="Phone Number" required data-validation-required-message="Please enter Your Phone Number." style="font-size:25px; height:80px;"/>
                         </div>
                         <div class="form-group floating-label-form-group controls" >
-                            <input class="form-control" id="email" placeholder="ID" required data-validation-required-message="Please enter your ID." style="font-size:25px; height:80px;"/>
+                            <input class="form-control" name="u_id" placeholder="ID" required data-validation-required-message="Please enter your ID." style="font-size:25px; height:80px;"/>
                         </div>
                         <div class="form-group floating-label-form-group controls" >
-                            <input class="form-control" id="pw" placeholder="PW" required data-validation-required-message="Please enter your PW." style="font-size:25px; height:80px;"/>
+                            <input class="form-control" name="u_pw" placeholder="PW" required data-validation-required-message="Please enter your PW." style="font-size:25px; height:80px;"/>
                         </div>
-                        <br /><br/>
-                        <button class="btn btn-secondary" type="button" style="height:50px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/login'">
+                        <br/><br/>
+                        <button class="btn btn-secondary" type="submit" style="height:50px; text-align:center; line-height:10px; font-size:20px;">
                     회원가입</button>
                     </form>
                     <br/><br/>

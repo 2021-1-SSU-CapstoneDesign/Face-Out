@@ -1,3 +1,11 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+alert("{{messages[-1]}}")
+</script>
+{% endif %}
+{% endwith %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,7 +36,12 @@
                         <li class="nav-item"><a class="nav-link" href="/mosaic_process" style="font-size:17px;">모자이크 처리</a></li>
                         <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A / 공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage" style="font-size:17px;">My Page</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        <li class="nav-item">
+                        {% if session.logged_in %}
+                            <a class="nav-link" href="/logout" style="font-size:17px;">Logout</a></li>
+                        {% else %}
+                            <a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -38,7 +51,7 @@
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto" style="height:80px;">
+                    <div class="col-lg-8 col-md-10 mx-auto" style="height:80px; ">
                     </div>
                 </div>
             </div>
@@ -48,75 +61,40 @@
             <div class="container">
             <div class="row">
                 <!-- Blog entries-->
-                <div class="col-md-8">
+                <div class="col-md-8" >
                     <h1 class="my-4">
                         Q&A
                     </h1>
                     <!-- Blog post-->
-                    <div class="card mb-4">
-                        <form>
+                    <div class="card mb-4" style="width:1100px">
+                        <form method="post">
                             <center>
                             <p>
-                                <textarea cols="40" rows="1" placeholder="default"> 제목을 입력하세요.</textarea>
-                                &nbsp&nbsp&nbsp&nbsp&nbsp
-                                <input type="checkbox" name="secret" value="비밀글" > 비밀글 설정
-                                <p style="font-size:15px;">
-                                <input type="radio" name="category" value="동영상 업로드"> # 동영상 업로드 &nbsp
-                                <input type="radio" name="category" value="동영상 다운로드"> # 동영상 다운로드 &nbsp
-                                <input type="radio" name="category" value="사진 업로드"> # 사진 업로드 &nbsp
-                                <input type="radio" name="category" value="동영상 저장"> # 동영상 저장 &nbsp
+                                <textarea cols="70" rows="1" name="title" placeholder="제목을 입력하세요."></textarea>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="checkbox" name="is_secret" value="비밀글" > 비밀글 설정
+                                <p style="font-size:18px;">
+                                <input type="radio" name="category" value="동영상 업로드"> # 동영상 업로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="category" value="동영상 다운로드"> # 동영상 다운로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="category" value="사진 업로드"> # 사진 업로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="category" value="동영상 저장"> # 사진 다운로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <input type="radio" name="category" value="공지사항"> # 공지사항
                             </p>
-                                <textarea cols="55" rows="10" placeholder="default"> 내용을 입력하세요.</textarea>
+                                <textarea cols="90" rows="10" name="content" placeholder="내용을 입력하세요."></textarea>
                             </p>
+                                <br>
+                            <button class="btn btn-secondary" type="submit" style="height:60px; text-align:center; width:120px; line-height:10px; font-size:20px;" >
+                    저장</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <button class="btn btn-secondary" type="submit" style="height:60px; text-align:center; width:120px; line-height:10px; font-size:20px;" onClick="location.href='/q&a'">
+                    취소</button>
+                            <br><br>
                             </center>
                         </form>
                     </div>
+
                 </div>
-                <!-- Side widgets-->
-                <center class="col-md-4">
-                    <!-- Search widget-->
-                    <div class="card my-4">
-                        <h5 class="card-header">검색</h5>
-                        <div class="card-body">
-                            <div class="input-group" >
-                                <input class="form-control" type="text" placeholder="제목, 내용.." />
-                                <span class="input-group-append"  >
-                                    <button class="btn btn-secondary" type="button" style="height:38px; text-align:center; line-height:10px;" >
-                                        찾기</button></span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Categories widget-->
-                    <div class="card my-4">
-                        <h5 class="card-header">카테고리</h5>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!" style="font-size:18px;">동영상 업로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">사진 업로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">공지사항</a></li>
-
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!" style="font-size:18px;">동영상 다운로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">동영상 저장</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Side widget-->
-                    <center>
-                    <button class="btn btn-secondary" type="button" style="height:50px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/q&a'">
-                        저장</button>
-                    <button class="btn btn-secondary" type="button" style="height:50px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/q&a'">
-                        취소</button></center></center>
-            </div></div>
+            </div>
+            </div>
         </div>
         <hr>
         <!-- Footer-->

@@ -1,42 +1,9 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime
+from sqlalchemy import Column, ForeignKey, Integer, Boolean, String, Text, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
 Base = declarative_base()
-
-class Question(Base):
-    __tablename__ = 'question'
-
-    id = Column(Integer, primary_key=True)  # 카테고리 번호
-    name = Column(String(100), nullable=False)  # 카테고리 이름
-
-    @property
-    def serialize(self):
-        return {
-            'name': self.name,
-            'id': self.id,
-        }
-
-
-class QuestionContent(Base):
-    __tablename__ = 'question_content'
-
-    id = Column(Integer, primary_key=True)  # 질문 번호
-    content = Column(Text, nullable=False)  # 질문 내용
-    create_date = Column(DateTime(), nullable=False)  # 질문 등록날짜
-
-    question_id = Column(Integer, ForeignKey('question.id'))
-    question = relationship(Question)  # 질문이랑 연결
-
-    @property
-    def serialize(self):
-        return {
-            'id': self.id,
-            'content': self.content,
-            'create_date': self.create_date,
-        }
-
 
 class User(Base):
     __tablename__ = 'user'
@@ -57,6 +24,26 @@ class User(Base):
             'u_pw': self.u_pw,
         }
 
+
+class QuestionContent(Base):
+    __tablename__ = 'question_content'
+
+    id = Column(Integer, primary_key=True)  # 질문 번호
+    title = Column(Text, nullable=False) # 질문 제목
+    content = Column(Text, nullable=False)  # 질문 내용
+    create_date = Column(String(50), nullable=False)  # 질문 등록날짜
+    is_secret = Column(Boolean, nullable=False)  # 비밀글 설정 여부
+    category = Column(String(50), nullable=False) # 카테고리 번호
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'content': self.content,
+            'create_date': self.create_date,
+            'is_secret': self.is_secret,
+        }
 
 engine = create_engine('mysql+pymysql://root:root@localhost/mosaic')
 Base.metadata.create_all(engine)

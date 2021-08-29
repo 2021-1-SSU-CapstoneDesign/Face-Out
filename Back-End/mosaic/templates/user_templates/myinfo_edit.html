@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Q&A</title>
+        <title>MyInfo</title>
         <link rel="icon" type="image/x-icon" href="../../static/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -16,6 +16,7 @@
         <link href="../../static/styles.css" rel="stylesheet" />
     </head>
     <body>
+        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="/" style="font-size:30px;">Mosaic Processing</a>
@@ -38,72 +39,53 @@
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto" style="height:80px;">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="site-heading">
+                            <h1>My information</h1>
+                            <span class="subheading"style="margin-top:20px;">내 정보를 수정할 수 있습니다.</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
+        <!-- Main Content-->
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <h1 class="my-4">
-                        Q&A / 공지사항
-                    </h1>
-                    <div class="card mb-4" style="padding:20px;">
-                        <div>
-                            <h1 class="fw-bolder mb-1">제목</h1>
-                            <div class="text-muted fst-italic mb-2">게시 날짜</div>
-                            <a class="badge bg-secondary" href="#!">카테고리</a>
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    {% if session.logged_in %}
+                        <form method="post">
+                        <div class="form-group floating-label-form-group controls">
+                            <input class="form-control" name="u_name" placeholder="{{ now_uname }}" value="{{ now_uname }}" style="font-size:25px; height:80px;"/>
+
                         </div>
-                        <div >
-                            <p>Question 내용</p>
+                        <div class="form-group floating-label-form-group controls" >
+                            <input class="form-control" name="u_phone" placeholder="{{ now_uphone }}" value="{{ now_uphone }}" style="font-size:25px; height:80px;"/>
                         </div>
-                    </div>
+                        <div class="form-group floating-label-form-group controls" >
+                            <input class="form-control" name="u_id" placeholder="{{ now_uid }}" value="{{ now_uid }}" style="font-size:25px; height:80px;"/>
+                        </div>
+                        <div class="form-group floating-label-form-group controls" >
+                            <input class="form-control" name="u_pw" placeholder="{{ now_upw }}" value="{{ now_upw }}" style="font-size:25px; height:80px;"/>
+                        </div>
+                        <br/><br/>
+                        <button class="btn btn-secondary" type="submit" style="height:50px; width:150px; text-align:center; line-height:10px; font-size:20px;">
+                        저장</button>
+                        <br><br>
+                        <button class="btn btn-secondary" type="button" style="height:50px; width:150px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/mypage'">
+                        취소</button>
+                        </form>
+                    <br/><br/>
+                    {% else %}
+                        <center>
+                        <div class="form-group floating-label-form-group controls" style="height:80px; display:table;">
+                                <a style="font-size:30px; display:table-cell; vertical-align:middle;" > 로그인해주세요. </a>
+                            </div></center>
+                        {% endif %}
                 </div>
-                <center class="col-md-4">
-                    <div class="card my-4">
-                        <h5 class="card-header">검색</h5>
-                        <div class="card-body">
-                            <div class="input-group" >
-                                <input class="form-control" type="text" placeholder="제목, 내용.." />
-                                <span class="input-group-append"  >
-                                    <button class="btn btn-secondary" type="button" style="height:38px; text-align:center; line-height:10px;" >
-                                        찾기</button></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card my-4">
-                        <h5 class="card-header">카테고리</h5>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!" style="font-size:18px;">동영상 업로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">사진 업로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">공지사항</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!" style="font-size:18px;">동영상 다운로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">동영상 저장</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Side widget-->
-                    <center>
-                    <button class="btn btn-secondary" type="button" style="height:50px; width:100px;text-align:center; line-height:10px; font-size:16px;" onClick="location.href='/q&a'">
-                        목록</button>
-                    <button class="btn btn-secondary" type="button" style="height:50px; width:110px;text-align:center; line-height:10px; font-size:16px;" onClick="location.href='/q_write'">
-                        글 수정</button>
-                    <button class="btn btn-secondary" type="button" style="height:50px; width:110px;text-align:center; line-height:10px; font-size:16px;" >
-                        글 삭제</button></center>
-                </center>
             </div>
         </div>
-        <hr>
+        <hr />
+
         <!-- Footer-->
         <footer>
             <div class="container">

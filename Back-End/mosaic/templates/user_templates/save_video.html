@@ -29,7 +29,12 @@
                         <li class="nav-item"><a class="nav-link" href="/mosaic_process" style="font-size:17px;">모자이크 처리</a></li>
                         <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A / 공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage" style="font-size:17px;">My Page</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        <li class="nav-item">
+                        {% if session.logged_in %}
+                            <a class="nav-link" href="/logout" style="font-size:17px;">Logout</a></li>
+                        {% else %}
+                            <a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

@@ -1,3 +1,10 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+alert("{{messages[-1]}}")
+</script>
+{% endif %}
+{% endwith %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -52,7 +59,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-                    <p>회원가입을 하지 않으신 분은 회원가입부터 해주세요.</p>
+                    <p>글 작성, 동영상 저장 등을 원하시는 분은 회원가입부터 해주세요.</p>
                     <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work.-->
                     <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address!-->
                     <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally!-->
@@ -64,10 +71,10 @@
                             <input class="form-control" name="u_pw"  placeholder="PW" required data-validation-required-message="Please enter your PW." style="font-size:25px; height:80px;"/>
                         </div>
                         <br/><br/>
-                        <button class="btn btn-secondary" type="submit" style="height:50px; text-align:center; line-height:10px; font-size:20px;" >
+                        <button class="btn btn-secondary" type="submit" style="height:50px; width:150px; text-align:center; line-height:10px; font-size:20px;" >
                     로그인</button>
                     <br><br>
-                        <button class="btn btn-secondary" type="button" style="height:50px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/signup'">
+                        <button class="btn btn-secondary" type="button" style="height:50px; width:150px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/signup'">
                     회원가입</button>
                     </form>
                     <br/><br/>

@@ -29,7 +29,12 @@
                         <li class="nav-item"><a class="nav-link" href="/mosaic_process" style="font-size:17px;">모자이크 처리</a></li>
                         <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A / 공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage" style="font-size:17px;">My Page</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        <li class="nav-item">
+                        {% if session.logged_in %}
+                            <a class="nav-link" href="/logout" style="font-size:17px;">Logout</a></li>
+                        {% else %}
+                            <a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -63,50 +68,53 @@
 
                         </div>
                     </div>
-                    <!-- Blog post-->
-                    <div class="card mb-4">
+                    <!-- Q&A -->
+ <!--
+                    <p class="card-text">질문글이 없습니다.</p>
+                    -->
+                   {% for q in question_list | reverse %}
+                        <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ q.id }}. &nbsp {{ q.title }}</h2>
+                            <p class="card-text">{{ q.content }}</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            {{q.create_date}}
 
-                        <div class="card-body">
-                            <h2 class="card-title">질문 1</h2>
-                            <p class="card-text">사용자 질문</p>
-                            <button class="btn btn-secondary" type="button" style="height:40px; text-align:center; line-height:10px; font-size:12px;" onClick="location.href='/question'">
-                        더보기 →</button>
                         </div>
-                        <div class="card-footer text-muted">
-                             관리자 답변
-                           <!-- <a href="#!">Start Bootstrap</a>-->
                         </div>
-                    </div>
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title">질문 2</h2>
-                            <p class="card-text">사용자 질문</p>
-                            <button class="btn btn-secondary" type="button" style="height:40px; text-align:center; line-height:10px; font-size:12px;" onClick="location.href='/question'">
-                        더보기 →</button>
-                        </div>
-                        <div class="card-footer text-muted">
-                            관리자 답변
-                        </div>
-                    </div>
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title">질문 3</h2>
-                            <p class="card-text">사용자 질문</p>
-                            <button class="btn btn-secondary" type="button" style="height:40px; text-align:center; line-height:10px; font-size:12px;" onClick="location.href='/question'">
-                        더보기 →</button>
-                        </div>
-                        <div class="card-footer text-muted">
-                            관리자 답변
-                        </div>
-                    </div>
+                    {% endfor %}
+
 
                     <!-- Pagination-->
                     <ul class="pagination justify-content-center mb-4">
+                    {% if block_start-1 > 0 %}
+                        <li class="page-item"><a class="page-link" href="?page={{block_start-1}}">← 이전</a></li>
+                    {% endif %}
+
+                    {% for i in range(block_start, block_end+1) %}
+
+                        {% if i > last_page_num %}
+                        {% else %}
+                            {% if i == page %}
+                        <li class="page-item"><a class="page-link"  >{{i}}</a></li>
+                               <!--<a >{{i}}</a>-->
+                            {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                                <!--<a href="?page={{i}}">{{i}}</a>-->
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if block_end < last_page_num %}
+                        <li class="page-item"><a class="page-link" href="?page={{block_end+1}}">다음 →</a></li>
+                    {%endif%}
+                        </ul>
+
+                    <!--<ul class="pagination justify-content-center mb-4">
                         <li class="page-item"><a class="page-link" href="#!">← 이전</a></li>
                         <li class="page-item disabled"><a class="page-link" href="#!">다음 →</a></li>
-                    </ul>
+                    </ul>-->
                 </div>
                 <!-- Side widgets-->
                 <div class="col-md-4">
@@ -144,9 +152,13 @@
                         </div>
                     </div>
                     <center>
+                        {% if session.logged_in %}
                         <button class="btn btn-secondary" type="button" style="height:60px; width: 200px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/q_write'">
                         새 글 작성</button></center>
-                </div>
+                        {% else %}
+                        <button class="btn btn-secondary" type="button" style="height:60px; width: 200px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/login'">
+                        새 글 작성</button></center>
+                        {% endif %}                </div>
             </div></div>
         </div>
         <hr />

@@ -29,7 +29,12 @@
                         <li class="nav-item"><a class="nav-link" href="/mosaic_process" style="font-size:17px;">모자이크 처리</a></li>
                         <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A / 공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage" style="font-size:17px;">My Page</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        <li class="nav-item">
+                        {% if session.logged_in %}
+                            <a class="nav-link" href="/logout" style="font-size:17px;">Logout</a></li>
+                        {% else %}
+                            <a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -48,20 +53,36 @@
         <div class="container">
             <!-- Heading Row-->
             <div class="row align-items-center my-5">
+                <!-- 이미지 파일 업로드-->
+                <form action = "/save_video" method = "POST" enctype="multipart/form-data">
+                <!--이미지 파일 불러오기-->
                 <div class="col-lg-7">
-                    <div style=" width:49%; height:300px; float:left; text-align:center; line-height:300px; background-color:#FAFAD2;">
-                        Upload Image
-                    </div>
-                    <div style=" width:49%; height:300px; float:right; text-align:center; line-height:300px; background-color:#FAFAD2;">
-                        Upload Video
-                    </div>
+                    <input type = "file" name = "file"  value="image file 선택" style=" width:400px; height:300px; background-color:#FAFAD2; "/>
+                    <!--<div style=" width:400px; height:300px; float:left; text-align:center; line-height:300px; background-color:#FAFAD2;">
+                        <input type = "file" name = "file" />
+                    </div>-->
                 </div>
-                <div class="col-lg-5">
-                    <h1 class="font-weight-normal">주의사항</h1>
-                    <p> 사진을 올리지 않으면 동영상에 있는 모든 사람의 얼굴이 모자이크 처리됩니다.</p>
-                    <center>
-                    <button class="btn btn-secondary" type="button" style="height:80px; width:380px; text-align:center; line-height:10px; font-size:25px;" onClick="location.href='/save_video'">
-                    모자이크 처리 시작</button></center>
+                <!-- 제출 -->
+                <div class="col-lg-7">
+                    <input class="btn btn-secondary" value="image file 모자이크 시작" type = "submit" style="height:80px; width:400px; text-align:center; line-height:10px; font-size:25px;" />
+                </div>
+                </form>
+
+                <!-- 동영상 파일 업로드-->
+                <form action = "/save_video" method = "POST" enctype="multipart/form-data">
+                <!--동영상 파일 불러오기-->
+                <div class="col-lg-7">
+                        <input type = "file" name = "file"  value="image file 선택" style=" width:400px; height:300px; background-color:#FAFAD2; "/>
+                </div>
+                <!-- 제출 -->
+                <div class="col-lg-7">
+                    <input class="btn btn-secondary" value="video file 모자이크 시작" type = "submit" style="height:80px; width:400px; text-align:center; line-height:10px; font-size:25px;" />
+                </div>
+                </form>
+                <!-- 주의사항 -->
+                <div style="width:280px; height:350px;">
+                    <h1 class="font-weight-bold" >주의사항</h1>
+                    <p class="font-weight-normal"> 사진을 올리지 않으면 동영상에 있는 모든 사람의 얼굴이 모자이크 처리됩니다.</p>
                 </div>
             </div>
             <!-- Call to Action-->

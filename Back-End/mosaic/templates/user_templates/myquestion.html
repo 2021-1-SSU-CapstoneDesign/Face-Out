@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Home</title>
+        <title>Q&A</title>
         <link rel="icon" type="image/x-icon" href="../../static/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -16,10 +16,9 @@
         <link href="../../static/styles.css" rel="stylesheet" />
     </head>
     <body>
-        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="" style="font-size:30px;">Mosaic Processing</a>
+                <a class="navbar-brand" href="/" style="font-size:30px;">Mosaic Processing</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -44,87 +43,72 @@
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto">
-                        <div class="site-heading">
-                            <h1>Welcome</h1>
-                            <span class="subheading" style="margin-top:20px;">영상에서 사람들의 얼굴을 모자이크 처리 해주는 웹사이트 입니다.</span>
-                        </div>
+                    <div class="col-lg-8 col-md-10 mx-auto" style="height:80px;">
                     </div>
                 </div>
             </div>
         </header>
-        <!-- Main Content-->
         <div class="container">
-            <!-- Heading Row-->
-            <div class="row align-items-center my-5">
-                <!-- 이미지 파일 업로드-->
-                <form action = "/save_video" method = "POST" enctype="multipart/form-data">
-                <!--이미지 파일 불러오기-->
-                <div class="col-lg-7">
-                    <input type = "file" name = "file"  value="image file 선택" style=" width:400px; height:300px; background-color:#FAFAD2; "/>
-                    <!--<div style=" width:400px; height:300px; float:left; text-align:center; line-height:300px; background-color:#FAFAD2;">
-                        <input type = "file" name = "file" />
-                    </div>-->
-                </div>
-                <!-- 제출 -->
-                <div class="col-lg-7">
-                    <input class="btn btn-secondary" value="image file 모자이크 시작" type = "submit" style="height:80px; width:400px; text-align:center; line-height:10px; font-size:25px;" />
-                </div>
-                </form>
-
-
-                <!-- 동영상 파일 업로드-->
-                <form action = "/save_video" method = "POST" enctype="multipart/form-data">
-                <!--동영상 파일 불러오기-->
-                <div class="col-lg-7">
-                        <input type = "file" name = "file"  value="image file 선택" style=" width:400px; height:300px; background-color:#FAFAD2; "/>
-                </div>
-                <!-- 제출 -->
-                <div class="col-lg-7">
-                    <input class="btn btn-secondary" value="video file 모자이크 시작" type = "submit" style="height:80px; width:400px; text-align:center; line-height:10px; font-size:25px;" />
-                </div>
-                </form>
-
-                <!-- 주의사항 -->
-                <div style="width:280px; height:350px;">
-                    <h1 class="font-weight-bold" >주의사항</h1>
-                    <p class="font-weight-normal"> 사진을 올리지 않으면 동영상에 있는 모든 사람의 얼굴이 모자이크 처리됩니다.</p>
-                </div>
-            </div>
-
-            <!-- Call to Action-->
-            <div class="card text-white bg-secondary my-5 py-4 text-center" >
-                <div class="card-body"><p class="text-white m-0" style="font-size:30px; font-weight:bold; height:30px; line-height:30px; ">웹사이트 사용 방법</p></div>
-            </div>
-            <!-- Content Row-->
             <div class="row">
-                <div class="col-md-4 mb-5" >
-                    <div class="card h-100" >
+                <div class="col-md-8">
+                    <h1 class="my-4">
+                        Q&A / 공지사항
+                    </h1>
+                    <div class="card mb-4" style="padding:20px;">
+                        <div>
+                            <h1 class="fw-bolder mb-1">제목</h1>
+                            <div class="text-muted fst-italic mb-2">게시 날짜</div>
+                            <a class="badge bg-secondary" href="#!">카테고리</a>
+                        </div>
+                        <div >
+                            <p>Question 내용</p>
+                        </div>
+                    </div>
+                </div>
+                <center class="col-md-4">
+                    <div class="card my-4">
+                        <h5 class="card-header">검색</h5>
                         <div class="card-body">
-                            <h2 class="card-title">첫번째</h2>
-                            <p class="card-text" style="height:170px; text-align:center; padding:30px;">모자이크 처리에서 </br>제외할 사람의 사진을 </br>업로드해주세요.</p>
+                            <div class="input-group" >
+                                <input class="form-control" type="text" placeholder="제목, 내용.." />
+                                <span class="input-group-append"  >
+                                    <button class="btn btn-secondary" type="button" style="height:38px; text-align:center; line-height:10px;" >
+                                        찾기</button></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body" >
-                            <h2 class="card-title">두번째</h2>
-                            <p class="card-text" style="height:170px; text-align:center; padding:30px;">모자이크 처리할 동영상을 </br>업로드해주세요.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
+                    <div class="card my-4">
+                        <h5 class="card-header">카테고리</h5>
                         <div class="card-body">
-                            <h2 class="card-title">세번째</h2>
-                            <p class="card-text" style="height:170px; text-align:center; padding:13px;">모자이크 완료된 동영상은 </br>기기에 다운로드 받을 수 있고 </br>로그인 시 웹 사이트 내에 </br>보관 가능합니다.</p>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!" style="font-size:18px;">동영상 업로드</a></li>
+                                        <li><a href="#!" style="font-size:18px;">사진 업로드</a></li>
+                                        <li><a href="#!" style="font-size:18px;">공지사항</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!" style="font-size:18px;">동영상 다운로드</a></li>
+                                        <li><a href="#!" style="font-size:18px;">동영상 저장</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <!-- Side widget-->
+                    <center>
+                    <button class="btn btn-secondary" type="button" style="height:50px; width:100px;text-align:center; line-height:10px; font-size:16px;" onClick="location.href='/q&a'">
+                        목록</button>
+                    <button class="btn btn-secondary" type="button" style="height:50px; width:110px;text-align:center; line-height:10px; font-size:16px;" onClick="location.href='/q_write'">
+                        글 수정</button>
+                    <button class="btn btn-secondary" type="button" style="height:50px; width:110px;text-align:center; line-height:10px; font-size:16px;" >
+                        글 삭제</button></center>
+                </center>
             </div>
         </div>
-        <hr/>
+        <hr>
         <!-- Footer-->
         <footer>
             <div class="container">

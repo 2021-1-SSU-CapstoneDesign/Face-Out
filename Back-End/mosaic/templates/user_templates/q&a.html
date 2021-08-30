@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="/mosaic_process" style="font-size:17px;">모자이크 처리</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A / 공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage" style="font-size:17px;">My Page</a></li>
                         <li class="nav-item">
                         {% if session.logged_in %}
@@ -54,20 +54,10 @@
             <div class="row">
                 <div class="col-md-8">
                     <h1 class="my-4">
-                        Q&A / 공지사항
+                        Q&A
                     </h1>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title">공지사항</h2>
-                            <p class="card-text">웹페이지 이용에 어려움을 겪고 계신 분들은 Q&A 게시판에 문의 해주세요.</p>
-                            <button class="btn btn-secondary" type="button" style="height:40px; text-align:center; line-height:10px; font-size:12px;" onClick="location.href='/q&a'">
-                        더보기 →</button>
-                        </div>
-                        <div class="card-footer text-muted">
-                            2021년 05월 31에 게시됨.
-
-                        </div>
-                    </div>
+                    <h5 class="card-text">웹페이지 이용에 어려움을 겪고 계신 분들은 Q&A 게시판에 문의 해주세요.</h5>
+                    <br><br>
                     <!-- Q&A -->
  <!--
                     <p class="card-text">질문글이 없습니다.</p>
@@ -76,7 +66,11 @@
                         <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title">{{ q.id }}. &nbsp {{ q.title }}</h2>
+                            {% if q.is_secret == 1 %}
+                            <p class="card-text">비밀글입니다.</p>
+                            {% else %}
                             <p class="card-text">{{ q.content }}</p>
+                            {% endif %}
                         </div>
                         <div class="card-footer text-muted">
                             {{q.create_date}}
@@ -139,7 +133,7 @@
                                     <ul class="list-unstyled mb-0">
                                         <li><a href="#!" style="font-size:18px;" >동영상 업로드</a></li>
                                         <li><a href="#!" style="font-size:18px;">사진 업로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">공지사항</a></li>
+                                        <li><a href="#!" style="font-size:18px;">기타</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6">
@@ -169,23 +163,7 @@
                     <div class="col-lg-8 col-md-10 mx-auto">
                         <ul class="list-inline text-center">
                             <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="https://github.com/2021-1-SSU-CapstoneDesign">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>

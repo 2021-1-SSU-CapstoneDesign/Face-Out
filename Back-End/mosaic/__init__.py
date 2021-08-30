@@ -16,7 +16,7 @@ app = Flask( __name__)
 # User Web Page
 
 @app.route('/myquestion')
-def question():
+def myquestion():
     return render_template('/user_templates/myquestion.html')
 
 #@app.route('/save_video')
@@ -76,8 +76,8 @@ def question_notice():
         question_list = question_list[-((page - 1) * limit + limit):]
     else:
         question_list = question_list[-((page - 1) * limit + limit):-((page - 1) * limit)]
-    print((page-1)*limit)
-    print((page-1)*limit+limit)
+    #print((page-1)*limit)
+    #print((page-1)*limit+limit)
 
     # 마지막 페이지 수, 반드시 올림 해야 함.
     last_page_num = math.ceil(tot_cnt/limit)
@@ -92,6 +92,8 @@ def question_notice():
     # 현재 블럭의 맨 끝 페이지 넘버 (첫 번째 블럭이라면, block_end = 5)
     block_end = block_start + (block_size - 1)
 
+
+
     return render_template('/user_templates/q&a.html', question_list=question_list,
                            limit=limit, page=page, tot_cnt=tot_cnt,
     block_size=block_size, block_num=block_num, block_start=block_start,
@@ -104,6 +106,7 @@ def my_page():
         info = db_session.query(User).filter_by(u_id=session['u_id']).first()
         return render_template('/user_templates/mypage.html', now_uname=info.u_name, now_uphone=info.u_phone, now_uid=info.u_id, now_upw=info.u_pw)
     else:
+        flash('로그인 후 이용가능합니다.')
         return redirect('/login')
 
 

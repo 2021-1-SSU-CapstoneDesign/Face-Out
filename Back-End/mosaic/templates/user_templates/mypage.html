@@ -1,3 +1,11 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+alert("{{messages[-1]}}")
+</script>
+{% endif %}
+{% endwith %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link" href="/mosaic_process" style="font-size:17px;">모자이크 처리</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A / 공지사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage" style="font-size:17px;">My Page</a></li>
                         <li class="nav-item">
                         {% if session.logged_in %}
@@ -199,25 +207,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-10 mx-auto">
-                        <ul class="list-inline text-center">
+                    <ul class="list-inline text-center">
                             <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fas fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#!">
+                                <a href="https://github.com/2021-1-SSU-CapstoneDesign">
                                     <span class="fa-stack fa-lg">
                                         <i class="fas fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-github fa-stack-1x fa-inverse"></i>

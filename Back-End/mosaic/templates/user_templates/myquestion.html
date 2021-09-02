@@ -51,63 +51,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h1 class="my-4">
-                        Q&A / 공지사항
-                    </h1>
-                    <div class="card mb-4" style="padding:20px;">
+                    <h2 class="my-4">
+                        내 Q&A
+                    </h2>
+                    <br>
+                    <div class="card mb-4" style="padding:20px; width:1100px; height:700px;">
                         <div>
-                            <h1 class="fw-bolder mb-1">제목</h1>
-                            <div class="text-muted fst-italic mb-2">게시 날짜</div>
-                            <a class="badge bg-secondary" href="#!">카테고리</a>
+                            <h2 class="fw-bolder mb-1">{{ title }}</h2>
+                            <br>
+                            <div class="text-muted fst-italic mb-2">{{ date }}
+                                <div><a class="badge bg-secondary" style="font-size:20px; " >{{category}}</a></div></div>
                         </div>
+                        <hr>
                         <div >
-                            <p>Question 내용</p>
+                            <p style="font-size:25px;">{{content}}</p>
                         </div>
                     </div>
                 </div>
-                <center class="col-md-4">
-                    <div class="card my-4">
-                        <h5 class="card-header">검색</h5>
-                        <div class="card-body">
-                            <div class="input-group" >
-                                <input class="form-control" type="text" placeholder="제목, 내용.." />
-                                <span class="input-group-append"  >
-                                    <button class="btn btn-secondary" type="button" style="height:38px; text-align:center; line-height:10px;" >
-                                        찾기</button></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card my-4">
-                        <h5 class="card-header">카테고리</h5>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!" style="font-size:18px;">동영상 업로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">사진 업로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">공지사항</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                        <li><a href="#!" style="font-size:18px;">동영상 다운로드</a></li>
-                                        <li><a href="#!" style="font-size:18px;">동영상 저장</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Side widget-->
-                    <center>
-                    <button class="btn btn-secondary" type="button" style="height:50px; width:100px;text-align:center; line-height:10px; font-size:16px;" onClick="location.href='/q&a'">
-                        목록</button>
-                    <button class="btn btn-secondary" type="button" style="height:50px; width:110px;text-align:center; line-height:10px; font-size:16px;" onClick="location.href='/q_write'">
-                        글 수정</button>
-                    <button class="btn btn-secondary" type="button" style="height:50px; width:110px;text-align:center; line-height:10px; font-size:16px;" >
-                        글 삭제</button></center>
-                </center>
             </div>
         </div>
+        <center>
+            <button class="btn btn-secondary" type="button" style="height:60px; width:140px;text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/mypage'">
+                이전</button>&nbsp
+            <button class="btn btn-secondary" type="button" style="height:60px; width:140px;text-align:center; line-height:10px; font-size:20px;"
+                    onClick="location.href='/myquestion_edit?title={{title}}&category={{category}}&content={{content}}&id={{id}}&date={{date}}'">
+                글 수정</button>&nbsp
+            <button class="btn btn-secondary" type="button" style="height:60px; width:140px;text-align:center; line-height:10px; font-size:20px;"
+                    onClick="location.href='/question_delete?title={{title}}&category={{category}}&content={{content}}&id={{id}}&date={{date}}''">
+                글 삭제</button></center><br>
         <hr>
         <!-- Footer-->
         <footer>

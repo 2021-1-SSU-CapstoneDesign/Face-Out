@@ -34,6 +34,7 @@ class QuestionContent(Base):
     create_date = Column(String(50), nullable=False)  # 질문 등록날짜
     is_secret = Column(Boolean, nullable=False)  # 비밀글 설정 여부
     category = Column(String(50), nullable=False) # 카테고리 번호
+    writer = Column(String(100), nullable=False)    # 작성자 아이디
 
     @property
     def serialize(self):
@@ -43,6 +44,7 @@ class QuestionContent(Base):
             'content': self.content,
             'create_date': self.create_date,
             'is_secret': self.is_secret,
+            'writer' : self.writer,
         }
 
 engine = create_engine('mysql+pymysql://root:root@localhost/mosaic')

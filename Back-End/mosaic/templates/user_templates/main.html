@@ -1,3 +1,11 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+alert("{{messages[-1]}}")
+</script>
+{% endif %}
+{% endwith %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -58,7 +66,7 @@
             <!-- Heading Row-->
             <div class="row align-items-center my-5">
                 <!-- 이미지 파일 업로드-->
-                <form action = "/save_video" method = "POST" enctype="multipart/form-data">
+                <form action = "/save_file" method = "POST" enctype="multipart/form-data">
                 <!--이미지 파일 불러오기-->
                 <div class="col-lg-7">
                     <input type = "file" name = "file"  value="image file 선택" style=" width:400px; height:300px; background-color:#FAFAD2; "/>
@@ -68,13 +76,13 @@
                 </div>
                 <!-- 제출 -->
                 <div class="col-lg-7">
-                    <input class="btn btn-secondary" value="image file 모자이크 시작" type = "submit" style="height:80px; width:400px; text-align:center; line-height:10px; font-size:25px;" />
+                    <button class="btn btn-secondary" type = "submit"
+                           style="height:80px; width:400px; text-align:center; line-height:10px; font-size:25px;">image file 모자이크 시작</button>
                 </div>
                 </form>
 
-
                 <!-- 동영상 파일 업로드-->
-                <form action = "/save_video" method = "POST" enctype="multipart/form-data">
+                <form action = "/save_file" method = "POST" enctype="multipart/form-data">
                 <!--동영상 파일 불러오기-->
                 <div class="col-lg-7">
                         <input type = "file" name = "file"  value="image file 선택" style=" width:400px; height:300px; background-color:#FAFAD2; "/>

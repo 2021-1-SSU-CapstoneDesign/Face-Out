@@ -1,10 +1,11 @@
-from flask import Flask, session, render_template, redirect, request, url_for, flash
+from flask import Flask, session, render_template, redirect, request, url_for, flash, send_file
 import math
 from werkzeug.utils import secure_filename
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, QuestionContent, User
 from datetime import datetime
+import os
 
 engine = create_engine('mysql+pymysql://root:root@localhost/mosaic')
 Base.metadata.bind = engine
@@ -15,13 +16,81 @@ db_session = DBSession()
 app = Flask( __name__)
 # User Web Page
 
+@app.route('/question_delete', methods=['GET','POST'])
+def question_delete():
+    if request.method == 'POST':
+
+        title = request.args.get('title', '제목')
+        category = request.args.get('category', '카테고리')
+        content = request.args.get('content', '내용')
+        id = request.args.get('id', '아이디')
+        date = request.args.get('date', '날짜')
+        # filter_by 안에 뭐가 들어가야할지 모르겠음.. 내가 누른 글의 번호를 어떻게 알아내지..?
+        # 여기 id 쓰면 돼!!
+        q_delete = db_session.query(QuestionContent).filter_by().one()
+        db_session.delete(q_delete)
+        db_session.commit()
+        return redirect('/mypage')
+    else:
+        return render_template('/user_templates/main.html')
+
 @app.route('/myquestion')
 def myquestion():
-    return render_template('/user_templates/myquestion.html')
+    #print('들어왔어?')
 
-#@app.route('/save_video')
-#def save_video():
-#    return render_template('/user_templates/save_video.html')
+    title = request.args.get('title', '제목')
+    date = request.args.get('date', '날짜')
+    category = request.args.get('category', '카테고리')
+    content = request.args.get('content', '내용')
+    id = request.args.get('id','아이디')
+    #print(title)
+    #print(id)
+    #return redirect('/myquestion')
+    return render_template('/user_templates/myquestion.html', title=title, date=date, category=category, content=content, id=id)
+
+
+@app.route('/myquestion_edit', methods=['GET', 'POST'])
+def myquestion_edit():
+    edit_question = db_session.query(QuestionContent).filter_by(title=QuestionContent.title).first()
+    #return render_template('/user_templates/myquestion_edit.html', title=edit_question.title, category=edit_question.category, content=edit_question.content)
+    if request.method == 'post':
+        edit_question.create_date=datetime.now()
+        if request.form['title'] != edit_question.title:
+            edit_question.title = request.form['title']
+        if request.form['date'] != edit_question.date:
+            edit_question.date = request.form['date']
+        if request.form['category'] != edit_question.category:
+            edit_question.category = request.form['category']
+        if request.form['content'] != edit_question.content:
+            edit_question.content = request.form['content']
+        db_session.add(edit_question)
+        db_session.commit()
+        return render_template('/user_templates/main.html')
+
+    title = request.args.get('title', '제목')
+    category = request.args.get('category', '카테고리')
+    content = request.args.get('content', '내용')
+    id = request.args.get('id', '아이디')
+    date = request.args.get('date', '날짜')
+    #print("id 뭐임?")
+    #print(id)
+    return render_template('/user_templates/myquestion_edit.html', title=title, category=category,
+                           content=content, id=id, date=date)
+
+
+
+
+@app.route('/question_search', methods=['GET','POST'])
+def question_search():
+    if request.method == 'POST':
+        search = request.form['search']
+        #search_data = db_session.query(QuestionContent).filter_by(QuestionContent.is_secret==0, QuestionContent.content.in_(search)).all()
+        search_data = db_session.query(QuestionContent).filter(QuestionContent.is_secret == 0, QuestionContent.content.ilike(search)).all()
+        return redirect('/q&a')
+        #return render_template('/user_templates/main.html')
+    else:
+        return render_template('/user_template/q&a.html')
+
 
 @app.route('/q_write', methods=['GET','POST'])
 def q_write():
@@ -31,6 +100,7 @@ def q_write():
         create_date = datetime.now()
         # category = request.form['category']
         category = request.form.get('category', False)
+
         if not category:
             # 하나라도 작성하지 않으면 다시 회원가입 화면
             flash('카테고리를 체크해주세요.')
@@ -45,6 +115,8 @@ def q_write():
             if request.form['is_secret']:
                 newQ.is_secret = True
         except: newQ.is_secret = False
+        info = db_session.query(User).filter_by(u_id=session['u_id']).first()
+        newQ.writer = info.u_id
 
         db_session.add(newQ)
         db_session.commit()
@@ -54,10 +126,7 @@ def q_write():
         return render_template('/user_templates/q_write.html')
 
 
-
-
-
-@app.route('/q&a')
+@app.route('/q&a', methods=['GET', 'POST'])
 def question_notice():
     # 한 페이지당 최대 게시물
     limit = 5
@@ -92,8 +161,6 @@ def question_notice():
     # 현재 블럭의 맨 끝 페이지 넘버 (첫 번째 블럭이라면, block_end = 5)
     block_end = block_start + (block_size - 1)
 
-
-
     return render_template('/user_templates/q&a.html', question_list=question_list,
                            limit=limit, page=page, tot_cnt=tot_cnt,
     block_size=block_size, block_num=block_num, block_start=block_start,
@@ -104,7 +171,18 @@ def question_notice():
 def my_page():
     if session.get('u_id'):
         info = db_session.query(User).filter_by(u_id=session['u_id']).first()
-        return render_template('/user_templates/mypage.html', now_uname=info.u_name, now_uphone=info.u_phone, now_uid=info.u_id, now_upw=info.u_pw)
+        question = db_session.query(QuestionContent).all()
+        #writer = info.u_id
+        #for i in range(0, len(question)):
+            #print(question[i].writer)
+        #    if(question[i].writer == info.u_id):
+                #print(question[i].writer)
+        #        writer=question[i].writer
+        #print(writer)
+
+
+        return render_template('/user_templates/mypage.html', now_uname=info.u_name, now_uphone=info.u_phone,
+                               now_uid=info.u_id, now_upw=info.u_pw, writer=info.u_id, question=question)
     else:
         flash('로그인 후 이용가능합니다.')
         return redirect('/login')
@@ -134,19 +212,52 @@ def myinfo_edit():
 def video_process():
     return render_template('/user_templates/mosaic_process.html')
 
-# 파일 업로드
+
+# 메인
 @app.route('/')
 def index():
     return render_template('/user_templates/main.html')
 
-# 파일 업로드 처리
-@app.route('/save_video', methods = ['GET', 'POST'])
+
+# main.html과 mosaic_process.html에서 버튼 클릭 시 파일 업로드 처리
+@app.route('/save_file', methods = ['GET', 'POST'])
 def upload_file():
+    #print("체크")
+    #print(request.method)
     if request.method == 'POST':
         f = request.files['file']
         # 저장할 경로 + 파일명
-        f.save(secure_filename(f.filename))
-        return render_template('/user_templates/save_video.html')
+        f.save('./uploads/' + secure_filename(f.filename))
+        return render_template('/user_templates/save_file.html')
+    else:
+        flash('파일을 업로드 해주세요')
+        return render_template('/user_templates/main.html')
+
+
+# save_file.html에서 파일 다운로드 버튼 눌렀을 때 처리
+@app.route('/download_file', methods=['GET', 'POST'])
+def download_file():
+    #if request.method == 'GET':
+     #   return render_template('/user_templates/save_file.html', files=files)
+
+    if request.method == 'POST':
+        print("들어왔나?")
+        files = os.listdir("./uploads/")
+        sw=0
+        for x in files:
+            if(x == request.form['file']):
+                sw = 1
+        print(sw)
+        if(sw == 1):
+            path = "./uploads/"
+            return send_file(path+request.form['file'], attachment_filename=request.form['file'], as_attachment=True)
+        else:
+            flash('파일 이름을 다시 확인해주세요.')
+            return render_template('/user_templates/save_file.html')
+
+
+
+
 
 
 # 회원가입
@@ -209,7 +320,6 @@ def login():
 # 로그아웃 구현
 @app.route('/logout', methods=['GET','POST'])
 def logout():
-    session['logged_in'] = False
     session.clear()
     return render_template('/user_templates/main.html',logged_in=False)
 

@@ -98,15 +98,15 @@ alert("{{messages[-1]}}")
         <section class="bg-light py-5 border-bottom">
             <div class="container px-5 my-5">
                 <div class="text-center mb-5">
-                    <h2 class="fw-bolder">내 동영상</h2>
-                    <p class="lead mb-0">각 동영상 당 최대 한달 저장 가능하며, 최대 3개까지 저장할 수 있습니다.</p>
+                    <h2 class="fw-bolder">내 사진</h2>
+                    <p class="lead mb-0">각 사진 당 최대 한달 저장 가능하며, 최대 3개까지 저장할 수 있습니다.</p>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <!-- Video 1 -->
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-5 mb-xl-0">
                             <div class="card-body p-5">
-                                <div class="small text-uppercase fw-bold text-muted">내 동영상 1.</div>
+                                <div class="small text-uppercase fw-bold text-muted">내 사진 1.</div>
                                 <div class="mb-3">
                                     <a class="display-4 fw-bold" style="font-size:40px;" href="#!">Link</a>
                                     <span class="text-muted">/ 날짜</span>
@@ -131,7 +131,7 @@ alert("{{messages[-1]}}")
                             <div class="card-body p-5">
                                 <div class="small text-uppercase fw-bold">
                                     <i class="bi bi-star-fill text-warning"></i>
-                                    내 동영상 2.
+                                    내 사진 2.
                                 </div>
                                 <div class="mb-3">
                                     <a class="display-4 fw-bold" style="font-size:40px;" href="#!">Link</a>
@@ -154,7 +154,7 @@ alert("{{messages[-1]}}")
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-5 mb-xl-0">
                             <div class="card-body p-5">
-                                <div class="small text-uppercase fw-bold text-muted">내 동영상 3.</div>
+                                <div class="small text-uppercase fw-bold text-muted">내 사진 3.</div>
                                 <div class="mb-3">
                                     <a class="display-4 fw-bold" style="font-size:40px;" href="#!">Link</a>
                                     <span class="text-muted">/ 날짜</span>
@@ -182,22 +182,21 @@ alert("{{messages[-1]}}")
                     <h2 class="fw-bolder">내 Q&A</h2>
                     <p class="lead mb-0">클릭 시 Q&A 게시판으로 이동할 수 있습니다.</p>
                 </div>
+
                 <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6">
-                        <!-- Q&A -->
+                    <div class="col-lg-5">
+                        {% for q in question %}
+
+                        {% if writer == q.writer %}
                         <div class="card mb-4">
                             <div class="card-body p-4">
-                                <a class="mb-1" href="#!">Q&A 제목 1</a>
-                                <div class="small text-muted">날짜</div>
+                                <a class="mb-1"
+                                   href="/myquestion?title={{q.title}}&date={{q.create_date}}&category={{q.category}}&content={{q.content}}&id={{q.id}}" >{{q.title}}</a>
+                                <div class="small text-muted" >{{q.create_date}}</div>
                             </div>
                         </div>
-                        <!-- Q&A -->
-                        <div class="card mb-4">
-                            <div class="card-body p-4">
-                                <a class="mb-1">Q&A 제목 2</a>
-                                <div class="small text-muted">날짜</div>
-                            </div>
-                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

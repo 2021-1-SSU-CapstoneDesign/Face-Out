@@ -73,9 +73,9 @@ Web FrontEnd 구상 & Face Recognition Model|Web Front-End & Back-End & Face Rec
 <br><br>
 
 ## 5. Dir & File 설명
-<img src="https://user-images.githubusercontent.com/53934639/132507464-f02d888e-9e19-49cd-a402-bbc606e7e4d1.png" style="width:350px">|![image](https://user-images.githubusercontent.com/53934639/132510552-2a148894-6930-486c-a32e-ad3c6080e423.png)
+<img src="https://user-images.githubusercontent.com/53934639/132507464-f02d888e-9e19-49cd-a402-bbc606e7e4d1.png" style="width:350px">|![image](https://user-images.githubusercontent.com/53934639/132513772-c52e7c31-3c6c-4764-acb2-985450f557ce.png)
 --|--
-![image](https://user-images.githubusercontent.com/53934639/132510584-79471bc3-14cb-42ab-9adb-ab2194768c50.png)|![image](https://user-images.githubusercontent.com/53934639/132510619-1b255652-ce0a-4301-af14-4997f161fe5f.png)
+![image](https://user-images.githubusercontent.com/53934639/132510584-79471bc3-14cb-42ab-9adb-ab2194768c50.png)|![image](https://user-images.githubusercontent.com/53934639/132513839-4c4a4818-087e-4b90-ab97-e44cc4d0651b.png)
 ![image](https://user-images.githubusercontent.com/53934639/132510683-0848a224-257a-43cb-aa5f-a8df9a0b9d9d.png)|![image](https://user-images.githubusercontent.com/53934639/132510700-0bd38a19-f2e9-40ff-93d2-a009ec6a02fa.png)
 
 <br><br>

@@ -7,10 +7,8 @@ from database_setup import Base, QuestionContent, User, ImageInfo, Comment
 from datetime import datetime
 import face_recog_image
 import face_recog_video
-import still_cut
 import face_recog_imageOnly
 import face_recog_videoOnly
-#import face_recog
 import os
 
 engine = create_engine('mysql+pymysql://root:root@localhost/mosaic')
@@ -365,8 +363,7 @@ def my_page():
                                block_num=block_num, block_start=block_start, block_end=block_end,
                                last_page_num=last_page_num, imageinfo=imageInfo)
 
-        #return render_template('/user_templates/mypage.html', now_uname=info.u_name, now_uphone=info.u_phone,
-         #                      now_uid=info.u_id, now_upw=info.u_pw, writer=info.u_id, question=question)
+
     else:
         flash('로그인 후 이용가능합니다.')
         return redirect('/login')

@@ -6,10 +6,9 @@
 ## 🚩 목차
 #### 1.&nbsp; &nbsp;[참여자 역할](#1-참여자-역할-1)
 #### 2.&nbsp; &nbsp;[프로젝트 설명](#2-프로젝트-설명)
-#### 3.&nbsp; &nbsp;[참여자 역할](#3-참여자-역할)
-#### 4.&nbsp; &nbsp;[수행 내용](#4-수행-내용)
-#### 5.&nbsp; &nbsp;[기대 효과](#5-기대-효과)
-#### 6.&nbsp; &nbsp;[Dir & File 설명](#6-Dir--File-설명)
+#### 3.&nbsp; &nbsp;[수행 내용](#3-수행-내용)
+#### 4.&nbsp; &nbsp;[기대 효과](#4-기대-효과)
+#### 5.&nbsp; &nbsp;[Dir & File 설명](#5-Dir--File-설명)
 
 
 <br><br>
@@ -33,7 +32,7 @@ Web FrontEnd 구상 & Face Recognition Model|Web Front-End & Back-End & Face Rec
 
 <br><br>
 
-## 2. 수행 내용
+## 3. 수행 내용
 ### 🚥 웹페이지 구현도
 <p align="center">
 <img src="https://user-images.githubusercontent.com/53934639/132503608-99861563-1776-4216-b693-5744413de5dc.png" style="width:600px"></p>
@@ -60,7 +59,7 @@ Web FrontEnd 구상 & Face Recognition Model|Web Front-End & Back-End & Face Rec
 
 <br><br>
 
-## 3. 기대효과
+## 4. 기대효과
 - 모자이크 처리 제외 사진 1장만 넣어도 자동으로 모자이크 처리가 된다.
   
 - 어플을 따로 다운받지 않아도 웹에서 서비스를 이용할 수 있다.
@@ -71,7 +70,7 @@ Web FrontEnd 구상 & Face Recognition Model|Web Front-End & Back-End & Face Rec
 
 <br><br>
 
-## 4. Dir & File 설명
+## 5. Dir & File 설명
 <img src="https://user-images.githubusercontent.com/53934639/132507464-f02d888e-9e19-49cd-a402-bbc606e7e4d1.png" style="width:350px">|![image](https://user-images.githubusercontent.com/53934639/132510552-2a148894-6930-486c-a32e-ad3c6080e423.png)
 --|--
 ![image](https://user-images.githubusercontent.com/53934639/132510584-79471bc3-14cb-42ab-9adb-ab2194768c50.png)|![image](https://user-images.githubusercontent.com/53934639/132510619-1b255652-ce0a-4301-af14-4997f161fe5f.png)

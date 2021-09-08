@@ -1,0 +1,229 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<script>
+alert("{{messages[-1]}}")
+</script>
+{% endif %}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>My Page</title>
+        <link rel="icon" type="image/x-icon" href="../../static/assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../../static/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="/" style="font-size:30px;">Mosaic Processing</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="/mosaic_process" style="font-size:17px;">모자이크 처리</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/q&a" style="font-size:17px;">Q&A</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/mypage" style="font-size:17px;">My Page</a></li>
+                        <li class="nav-item">
+                        {% if session.logged_in %}
+                            <a class="nav-link" href="/logout" style="font-size:17px;">Logout</a></li>
+                        {% else %}
+                            <a class="nav-link" href="/login" style="font-size:17px;">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('../../static/assets/img/mosaic_img.png')">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="site-heading">
+                            <h1>My Page</h1>
+                            <span class="subheading" style="margin-top:20px;">내 정보, 저장한 동영상, 내 Q&A를 확인할 수 있습니다.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="py-5 border-bottom">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder">내 정보</h2>
+                    <p class="lead mb-0">수정 가능합니다.</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div style="width:500px;">
+                        {% if session.logged_in %}
+                        <!-- My Info Contents -->
+                        <h2 class="card-title" style="display:inline;">Name</h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <a style="font-size:30px; display:inline;  vertical-align:upper;"  value="Name">
+                                    {{ now_uname }} </a><br><br>
+                        <h2 class="card-title" style="display:inline;">Phone-Number</h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a style="font-size:30px; display:inline; vertical-align:middle;" value="Phone - Number">
+                                    {{ now_uphone }}</a><br><br>
+                        <h2 class="card-title" style="display:inline;">ID</h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a style="font-size:30px; display:inline; vertical-align:middle;" value="ID">
+                                    {{ now_uid }}</a><br><br>
+                        <h2 class="card-title" style="display:inline;">PW</h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a style="font-size:30px; display:inline; vertical-align:middle;" value="PW">
+                                    {{ now_upw }}</a><br><br>
+                        <br/>
+                        <button class="btn btn-secondary" type="button" style="height:50px; text-align:center; line-height:10px; font-size:20px;" onClick="location.href='/myinfo_edit'">수정</button>
+                        <script type="text/javascript">
+                        function doThing(event) {
+                            event.preventDefault();
+                            confirm('정말 탈퇴하시겠습니까?') ?
+                                location.href = '/delete_account' :
+                                null;
+                        };
+                        </script>
+                        <button class="btn btn-secondary" name="delete_account" type="button" style="height:50px; text-align:center; line-height:10px; font-size:20px;" value=False onclick="doThing(event)">탈퇴</button>
+
+                        {% else %}
+                        <center>
+                        <div class="form-group floating-label-form-group controls" style="height:80px; display:table;">
+                                <a style="font-size:30px; display:table-cell; vertical-align:middle;" > 로그인해주세요. </a>
+                            </div></center>
+                        {% endif %}
+                    </div>
+                </div>
+        </section>
+        <!-- Videos -->
+        <section class="bg-light py-5 border-bottom">
+            <div class="container px-5 my-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder">내 사진 & 비디오</h2>
+                    <p class="lead mb-0">최대 6개까지 저장할 수 있습니다.</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <!-- Video 1 -->
+
+                    {% for i in imageinfo if writer == i.user%}
+
+                    {% if loop.index > 6 %}
+                        <script type="text/javascript">alert("파일은 최대 6개까지 저장가능합니다. 삭제 후 이용해주세요.");</script>
+                    {% else %}
+                    <div class="col-lg-6 col-xl-4" >
+                        <div class="card mb-5 mb-xl-0" style="height:550px;">
+                    <!--<button class="btn btn-secondary" type="button" style="height:30px; text-align:center; line-height:5px; font-size:15px;"
+                                            onClick="location.href='/delete_image?name={{i.name}}'">
+                    삭제</button>-->
+                        <div class="card-body p-5" >
+                                <div class="small text-uppercase fw-bold text-muted mb-3" align="right">
+                                    <button class="btn btn-secondary" type="button" style="height:30px; text-align:center; line-height:5px; font-size:15px;"
+                                            onClick="location.href='/delete_image?name={{i.name}}'">
+                    삭제</button>
+                                    </div>
+                        <div class="mb-3">
+                             <a class="display-4 fw-bold" style="font-size:25px;" href="/download_file?filename={{i.name}}">{{loop.index}}. {{i.name}}</a><br>
+                             <span class="text-muted" style="font-size:15px;">{{i.date}}</span>
+                        </div><img src="{{url_for('static', filename = i.url )}}" width="230px" style="vertical-align:bottom;"></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A -->
+        <section class="py-5 border-bottom">
+            <div class="container px-5 my-5 px-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder">내 Q&A</h2>
+                    <p class="lead mb-0">클릭 시 Q&A 게시판으로 이동할 수 있습니다.</p>
+                </div>
+
+                {% if tot_cnt == 0 %}
+                    <center><br><br>
+                    <h4 class="card-text">게시물이 존재하지 않습니다.</h4></center>
+                {% else %}
+                    {% for q in question_list | reverse %}
+                    <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-5">
+                        {% if writer == q.writer %}
+                            <div class="card mb-4">
+                               <div class="card-body p-4">
+                                   <a class="mb-1"
+                                      href="/question?title={{q.title}}&date={{q.create_date}}&category={{q.category}}&content={{q.content}}&id={{q.id}}&writer={{q.writer}}" >{{q.title}}</a>
+                                  <div class="small text-muted" >{{q.create_date[:19]}}</div>
+                               </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+
+
+
+                <!-- Pagination-->
+                    <!-- 여기가 페이징 구현하는 부분이거든..! 위에는 그냥 목록 순서 나타내는 거구-->
+                    <ul class="pagination justify-content-center mb-4">
+                    {% if block_start-1 > 0 %}
+                        <li class="page-item"><a class="page-link" href="?page={{block_start-1}}">← 이전</a></li>
+                    {% endif %}
+
+                    {% for i in range(block_start, block_end+1) %}
+
+                        {% if i > last_page_num %}
+                        {% else %}
+                            {% if i == page %}
+                        <li class="page-item"><a class="page-link"  >{{i}}</a></li>
+                               <!--<a >{{i}}</a>-->
+                            {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                                <!--<a href="?page={{i}}">{{i}}</a>-->
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if block_end < last_page_num %}
+                        <li class="page-item"><a class="page-link" href="?page={{block_end+1}}">다음 →</a></li>
+                    {%endif%}
+                    </ul></div></section>
+        <!-- Footer-->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                    <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://github.com/2021-1-SSU-CapstoneDesign">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="copyright text-muted">Copyright &copy; Soongsil University
+                            <br>2021 Capston Design
+                        <br>Choi-SeoYun, Kil-DaYoung, Song-SunYoung</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../../static/scripts.js"></script>
+    </body>
+</html>

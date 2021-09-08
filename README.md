@@ -34,8 +34,10 @@ Web FrontEnd 구상 & Face Recognition Model|Web Front-End & Back-End & Face Rec
 
 ## 3. 수행 내용
 ### 🚥 웹페이지 구현도
-<p align="center">
-<img src="https://user-images.githubusercontent.com/53934639/132503608-99861563-1776-4216-b693-5744413de5dc.png" style="width:600px"></p>
+웹페이지 구현도 | 실제 구현된 웹페이지
+--|--
+<img src="https://user-images.githubusercontent.com/53934639/132503608-99861563-1776-4216-b693-5744413de5dc.png" style="width:700px">|<img width="717" src="https://user-images.githubusercontent.com/53934639/132512594-1ea32147-9a2c-4336-a97f-7370798cddc6.png" algin="right">
+
 
 <br>
 

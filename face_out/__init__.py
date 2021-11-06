@@ -44,7 +44,8 @@ def myquestion_edit():
     id = request.args.get('id', '아이디')
     date = request.args.get('date', '날짜')
     edit_question = db_session.query(QuestionContent).filter_by(id=id).first()
-    print(request.method)
+
+    comment_list = db_session.query(Comment).filter_by(question_id=id).all()
 
     if request.method == 'POST':
         #print(request.form['content'])
@@ -59,7 +60,7 @@ def myquestion_edit():
             db_session.commit()
 
         return render_template('/user_templates/question.html',
-                               title=edit_question.title, date=edit_question.create_date, category=category, content=edit_question.content)
+                               title=edit_question.title, date=edit_question.create_date, category=category, content=edit_question.content, comment_list=comment_list)
     else:
         return render_template('/user_templates/myquestion_edit.html', title=title, category=category,
                            content=content, id=id, date=date)
@@ -242,10 +243,21 @@ def q_write():
         # category = request.form['category']
         category = request.form.get('category', False)
 
+
+        if not title:
+            flash('제목을 입력하세요')
+            return redirect('/q_write')
+
         if not category:
             # 하나라도 작성하지 않으면 다시 회원가입 화면
             flash('카테고리를 체크해주세요.')
             return redirect('/q_write')
+
+        if not content:
+            flash('내용을 입력하세요')
+            return redirect('/q_write')
+
+
         newQ = QuestionContent()
         newQ.title = title
         newQ.content = content
@@ -372,6 +384,10 @@ def my_page():
 @app.route('/myinfo_edit', methods=['GET','POST'])
 def myinfo_edit():
     edit = db_session.query(User).filter_by(u_id=session['u_id']).first()
+    image_edit = db_session.query(ImageInfo).filter_by(user=session['u_id']).all()
+    question_edit = db_session.query(QuestionContent).filter_by(writer=session['u_id']).all()
+    comment_edit = db_session.query(Comment).filter_by(commenter=session['u_id']).all()
+
     if request.method == 'GET':
         return render_template('/user_templates/myinfo_edit.html',
                                now_uname=edit.u_name, now_uphone=edit.u_phone, now_uid=edit.u_id, now_upw=edit.u_pw)
@@ -384,6 +400,23 @@ def myinfo_edit():
             edit.u_id = request.form['u_id']
         if request.form['u_pw'] != edit.u_pw:
             edit.u_pw = request.form['u_pw']
+
+        for u_image in image_edit:
+            if request.form['u_id'] != u_image.user:
+                u_image.user = request.form['u_id']
+                db_session.add(u_image)
+
+        for u_question in question_edit:
+            if request.form['u_id'] != u_question.writer:
+                u_question.writer = request.form['u_id']
+                db_session.add(u_question)
+
+        for u_comment in comment_edit:
+            if request.form['u_id'] != u_comment.commenter:
+                u_comment.commenter = request.form['u_id']
+                db_session.add(u_comment)
+
+
         db_session.add(edit)
         db_session.commit()
         session['u_id'] = edit.u_id

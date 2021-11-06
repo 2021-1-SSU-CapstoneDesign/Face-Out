@@ -112,7 +112,7 @@ alert("{{messages[-1]}}")
                     <form method="post" action="{{ url_for('question', title=title,date=date[:19],category=category,content=content,id=id,writer=writer )}}" >
                     <div class="input-group" >
                     <input class="form-control" name="content" placeholder="Comment (50자 이하)"  style="font-size:17px; height:50px; width:800px;"/>&nbsp;&nbsp;
-                        <!--여기서 버튼 눌렀을 때, 함수만들어서 db에 넣어줘야 할것 같아-->
+
                     <span class="input-group-append" >
                         <button class="btn btn-secondary" type="submit" style="height:50px; text-align:center; line-height:10px; font-size:16px;" formmethod="post">등록</button>
                         </span></div></form>{%endif%}

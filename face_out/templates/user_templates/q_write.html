@@ -67,8 +67,9 @@ alert("{{messages[-1]}}")
                     </h1>
                     <!-- Blog post-->
                     <div class="card mb-4" style="width:1100px">
-                        <form method="post">
-                            <center>
+                        <center>
+                        <form method="post"  style='display:inline'>
+
                             <p>
                                 <textarea cols="70" rows="1" name="title" placeholder="제목을 입력하세요."></textarea>
                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -77,19 +78,21 @@ alert("{{messages[-1]}}")
                                 <input type="radio" name="category" value="동영상 업로드"> # 동영상 업로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <input type="radio" name="category" value="동영상 다운로드"> # 동영상 다운로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <input type="radio" name="category" value="사진 업로드"> # 사진 업로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                <input type="radio" name="category" value="동영상 저장"> # 사진 다운로드 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="radio" name="category" value="동영상 저장"> # 동영상 저장 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                 <input type="radio" name="category" value="기타"> # 기타
-                            </p>
+                                </p>
                                 <textarea cols="90" rows="10" name="content" placeholder="내용을 입력하세요."></textarea>
                             </p>
                                 <br>
-                            <button class="btn btn-secondary" type="submit" style="height:60px; text-align:center; width:120px; line-height:10px; font-size:20px;" >
-                    저장</button>&nbsp&nbsp&nbsp&nbsp&nbsp
-                                <button class="btn btn-secondary" type="submit" style="height:60px; text-align:center; width:120px; line-height:10px; font-size:20px;" onClick="location.href='/q&a'">
+                            <button class="btn btn-secondary" type="submit" style="height:60px; text-align:center; width:120px; line-height:10px; font-size:20px;"
+                            onClick="location.href='/q_write'">
+                    저장</button></form>
+                                <button class="btn btn-secondary" type="submit" style="height:60px; text-align:center; width:120px; line-height:10px; font-size:20px;"
+                                        onClick="location.href='/q&a'" >
                     취소</button>
                             <br><br>
                             </center>
-                        </form>
+
                     </div>
 
                 </div>

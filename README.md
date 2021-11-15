@@ -73,10 +73,10 @@ Web FrontEnd 구상 & Face Recognition Model|Web Front-End & Back-End & Face Rec
 <br><br>
 
 ## 5. Dir & File 설명
-<img src="https://user-images.githubusercontent.com/53934639/132507464-f02d888e-9e19-49cd-a402-bbc606e7e4d1.png" style="width:350px">|![image](https://user-images.githubusercontent.com/53934639/132513772-c52e7c31-3c6c-4764-acb2-985450f557ce.png)
+<img src="https://user-images.githubusercontent.com/53934639/141782126-523d5b73-8303-40d0-af5a-bb3a5fc5f8c9.png" style="width:350px">|<p align="left">- init.py : DB와 연동하여 웹 사이트의 기능들을 정의한 함수와 얼굴인식 모델을 처리하는 함수를 정의<br> - database_setup.py : DB Table 설정 <br> - face_recog.py : 얼굴 인식 코드 <br> - face_recog_image.py : 모자이크에서 제외할 얼굴사진과 단체 사진 인식 후 모자이크 처리 코드 <br> - face_recog_imgaeOnly.py : 단체 사진 인식 후 인식된 전체 얼굴 모자이크 처리 코드 <br> - face_recog_video.py : 모자이크에서 제외할 얼굴사진과 단체 영상 인식 후 모자이크 처리 코드 <br> - face_recog_videoOnly.py : 단체 영상 인식 후 인식된 전체 얼굴 모자이크 처리 코드 <br> - new_face_recog_video.py & new_face_recog_videoOnly.py : 기존 영상 처리속도보다 속도를 개선한 코드</p>
 --|--
-![image](https://user-images.githubusercontent.com/53934639/132510584-79471bc3-14cb-42ab-9adb-ab2194768c50.png)|![image](https://user-images.githubusercontent.com/53934639/132513839-4c4a4818-087e-4b90-ab97-e44cc4d0651b.png)
-![image](https://user-images.githubusercontent.com/53934639/132510683-0848a224-257a-43cb-aa5f-a8df9a0b9d9d.png)|![image](https://user-images.githubusercontent.com/53934639/132510700-0bd38a19-f2e9-40ff-93d2-a009ec6a02fa.png)
+![image](https://user-images.githubusercontent.com/53934639/132510584-79471bc3-14cb-42ab-9adb-ab2194768c50.png)|<p align="left">**- input_uploads : 웹에서 input으로 주어지는 모자이크에서 제외할 얼굴 사진을 저장. <br> - output_uploads : 웹에서 input으로 주어지는 모자이크 할 단체 사진 또는 영상을 저장. <br> - downloads : 비회원인 경우, 모자이크 처리 결과를 저장. <br> - member_img_downloads : 회원인 경우, 모자이크 처리 결과 중 사진을 저장. <br> - member_video_downloads : 회원인 경우, 모자이크 처리 결과 중 영상을 저장. <br> - thumnail : a모자이크 처리가 된 영상에서 썸네일을 저장 <br> (이미지와 영상을 모자이크 처리하는 코드가 다르고, 영상의 경우 썸네일을 만들어주어야 하기에 따로 dir을 만들어 저장하였음.)**</p>
+![image](https://user-images.githubusercontent.com/53934639/132510683-0848a224-257a-43cb-aa5f-a8df9a0b9d9d.png)|<p align="left">**- login.html : 로그인 페이지 <br> - main.html : 메인 페이지, input으로 받은 파일들을 업로드, 모자이크 처리 방법 설명. <br> - mosaic_process.html : 모자이크 처리 페이지, 메인 페이지와 같은 기능. <br> - myinfo_edit.html : 회원인 경우, '내 정보'를 수정하는 페이지 <br> - mypage.html : 회원인 경우, '내 정보', 모자이크 처리된 결과 저장, '내 q&a' 볼 수 있음. <br> - myquestion_edit.html : '내 q&a' 수정하는 페이지 <br> - q&a.html : q&a 페이지 <br> - q_write.html : q&a에서 새 글 작성하는 페이지 <br> - question.html : q&a에서 글 클릭 시 나타나는 자세한 내용 페이지, 회원인 경우 댓글 작성 가능 <br> - save_file.html : 모자이크 처리된 결과를 기기에 다운로드 받거나 마이페이지에 저장하는 페이지 <br> - signup.html : 회원가입 페이지**</p>
 
 <br><br>
 

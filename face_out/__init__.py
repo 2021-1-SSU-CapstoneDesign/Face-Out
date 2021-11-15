@@ -6,9 +6,11 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, QuestionContent, User, ImageInfo, Comment
 from datetime import datetime
 import face_recog_image
-import face_recog_video
+#import face_recog_video
 import face_recog_imageOnly
-import face_recog_videoOnly
+#import face_recog_videoOnly
+import new_face_recog_video
+import new_face_recog_videoOnly
 import os
 
 engine = create_engine('mysql+pymysql://root:root@localhost/mosaic')
@@ -467,9 +469,8 @@ def upload_file():
         # 모자이크 할 파일 (단체사진)
         f_output = request.files['file2']
 
-        if f_input.filename == '':
-            print("잘 들어감")
-            # 모자이크에서 제외할 이미지가 없을 때 전체 인물 모자이크 처리코드
+        if f_input.filename == '':# 모자이크에서 제외할 이미지가 없을 때 전체 인물 모자이크 처리코드
+
             downloads_path = './static/downloads'
             d_path = './downloads/'
             filename2 = f_output.filename
@@ -492,8 +493,7 @@ def upload_file():
                 img=face_recog_imageOnly.process(img)
                 face_recog_imageOnly.save(downloads_path, img, filename)
                 d_path=d_path+filename
-                print("썸네일")
-                print(d_path)
+
                 return render_template('/user_templates/save_file.html', filename=filename, path=d_path)
 
             elif file_extenstion in video_extenstion:   # 단체 사진이 비디오 파일인 경우,
@@ -507,22 +507,15 @@ def upload_file():
                 path2 = './static/output_uploads/' + filename2
                 filename=filename.split(".")[0] + '.mp4'
                 #filename = filename
-                print("check")
+                #print("check")
                 print(filename)
-                img = face_recog_videoOnly.input(path2)
+                cap = new_face_recog_videoOnly.input(path2)
                 downloads_path = downloads_path + '/' + filename
                 fn = filename.split(".")[0] + ".jpg"
                 d_path = './thumnail/' + fn
                 d_path2 = './static/thumnail/' + fn
-                writer = face_recog_videoOnly.process(img, downloads_path, d_path2)
-                face_recog_videoOnly.save(writer)
-
-
-
-                # 썸네일 생성
-                #img = still_cut.makeStillCutImage(downloads_path)
-
-                #still_cut.save(img, d_path2)
+                writer = new_face_recog_videoOnly.process(source=cap, output_path=downloads_path, thumnail=d_path2, model_name='Facenet', detector_backend='ssd',)
+                new_face_recog_videoOnly.save(writer)
 
                 return render_template('/user_templates/save_file.html', filename=filename, path=d_path)
 
@@ -576,18 +569,17 @@ def upload_file():
                 print("check")
                 print(filename)
                 # 서윤이가 보낸 코드 실행 부분
-                img = face_recog_video.input1(path1)  # 모자이크에서 제외할 이미지
-                cap = face_recog_video.input2(path2)  # 모자이크 할 video file (단체사진)
+                img = new_face_recog_video.input1(path1)  # 모자이크에서 제외할 이미지
+                cap = new_face_recog_video.input2(path2)  # 모자이크 할 video file (단체사진)
                 #d_path = d_path + filename
                 downloads_path = downloads_path + '/' + filename
+
                 fn = filename.split(".")[0] + ".jpg"
                 d_path = './thumnail/' + fn
                 d_path2 = './static/thumnail/'+fn
-                writer = face_recog_video.process(cap, img, downloads_path, d_path2)
-                face_recog_video.save(writer)
-
-
-
+                print("썸네일:" + d_path)
+                writer = new_face_recog_video.process(db_path=img, output_path=downloads_path, model_name='Facenet', detector_backend='ssd', source=cap, thumnail=d_path2)
+                new_face_recog_video.save(writer)
                 print(downloads_path)
                 return render_template('/user_templates/save_file.html', filename=filename, path=d_path)
 

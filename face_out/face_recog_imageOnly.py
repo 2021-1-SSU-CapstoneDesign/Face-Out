@@ -13,7 +13,7 @@ def input(path):
 # faceLocTest = face_recognition.face_locations(imgTest)
 
 # 모자이크 함수
-def mosaic(src, ratio=0.1):
+def mosaic(src, ratio=0.05):
     faces = cv.detect_face(src)[0]
 
     for face in faces:

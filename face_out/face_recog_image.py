@@ -53,7 +53,8 @@ def process(imgTest, imgTrain):
     croppedFace = []
     for encode_test in encodeTest:
         dic = face_recognition.face_distance([encodeIU], encode_test)
-        if dic < 0.45:
+        print(dic)
+        if dic < 0.4:
             result = True
         else:
             result = False
@@ -73,7 +74,7 @@ def process(imgTest, imgTrain):
 STEP 4:
 false인 부분 모자이크 처리
 '''
-def mosaic(src, face, ratio=0.1):
+def mosaic(src, face, ratio=0.05):
     (startX, startY) = face[3], face[0]    # left, top
     (endX, endY) = face[1], face[2]    # right, bottom
 

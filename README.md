@@ -77,6 +77,7 @@ Web FrontEnd 구상 & Face Recognition Model|Web Front-End & Back-End & Face Rec
 --|--
 ![image](https://user-images.githubusercontent.com/53934639/132510584-79471bc3-14cb-42ab-9adb-ab2194768c50.png)|<p align="left">**- input_uploads : 웹에서 input으로 주어지는 모자이크에서 제외할 얼굴 사진을 저장. <br> - output_uploads : 웹에서 input으로 주어지는 모자이크 할 단체 사진 또는 영상을 저장. <br> - downloads : 비회원인 경우, 모자이크 처리 결과를 저장. <br> - member_img_downloads : 회원인 경우, 모자이크 처리 결과 중 사진을 저장. <br> - member_video_downloads : 회원인 경우, 모자이크 처리 결과 중 영상을 저장. <br> - thumnail : a모자이크 처리가 된 영상에서 썸네일을 저장 <br> (이미지와 영상을 모자이크 처리하는 코드가 다르고, 영상의 경우 썸네일을 만들어주어야 하기에 따로 dir을 만들어 저장하였음.)**</p>
 ![image](https://user-images.githubusercontent.com/53934639/132510683-0848a224-257a-43cb-aa5f-a8df9a0b9d9d.png)|<p align="left">**- login.html : 로그인 페이지 <br> - main.html : 메인 페이지, input으로 받은 파일들을 업로드, 모자이크 처리 방법 설명. <br> - mosaic_process.html : 모자이크 처리 페이지, 메인 페이지와 같은 기능. <br> - myinfo_edit.html : 회원인 경우, '내 정보'를 수정하는 페이지 <br> - mypage.html : 회원인 경우, '내 정보', 모자이크 처리된 결과 저장, '내 q&a' 볼 수 있음. <br> - myquestion_edit.html : '내 q&a' 수정하는 페이지 <br> - q&a.html : q&a 페이지 <br> - q_write.html : q&a에서 새 글 작성하는 페이지 <br> - question.html : q&a에서 글 클릭 시 나타나는 자세한 내용 페이지, 회원인 경우 댓글 작성 가능 <br> - save_file.html : 모자이크 처리된 결과를 기기에 다운로드 받거나 마이페이지에 저장하는 페이지 <br> - signup.html : 회원가입 페이지**</p>
+![image](https://user-images.githubusercontent.com/53934639/141784010-b1a23068-eb11-499c-99cb-e4b0ad749f11.png)|<p align="left">**- 단독으로 실행되는 모자이크 처리 코드**</p>
 
 <br><br>
 

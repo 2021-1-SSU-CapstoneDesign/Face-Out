@@ -1,5 +1,5 @@
 ## Face Out : 얼굴 인식을 통한 사람 얼굴 모자이크 처리 웹
-<img alt="Html" src ="https://img.shields.io/badge/2021 AI융합 경진대회-장려상-lightblue?style=for-the-badge"/>
+<img alt="Html" src ="https://img.shields.io/badge/2021 AI융합 경진대회-장려상-lightblue?style=for-the-badge"/>    <img alt="Html" src ="https://img.shields.io/badge/제 11회 숭실 캡스톤디자인 경진대회-장려상-lightblue?style=for-the-badge"/>
 
 #### Face Recognition을 통해 지정된 사람을 제외한 다른 사람들의 얼굴을 모자이크 처리하는 웹 서비스 제작(2021.11) - 최서윤, 길다영, 송선영
 
